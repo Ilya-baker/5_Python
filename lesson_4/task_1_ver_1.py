@@ -2,27 +2,46 @@ import timeit, cProfile
 
 def recursion(num, turn):
     if num != 0:
-        return recursion(num // 10, turn * 10 + num%10)
+        return recursion(num // 10, turn * 10 + num % 10)
     return str(turn)
 
-time_ = recursion(1234567890, 0)
-# time_ = recursion(1234567890234646894326487758345234576484568567956, 0)
+print(timeit.timeit(recursion(1234567890, 0), number=10)) # 4.400000000001625e-06
+print(timeit.timeit(recursion(123456789023464689432648775834, 0), number=10)) #9.000000000120023e-07
+print(timeit.timeit(recursion(1234567890, 0), number=100)) # 2.4999999999886224e-06
+print(timeit.timeit(recursion(123456789023464689432648775834, 0), number=100)) # 2.5000000000025002e-06
+print(timeit.timeit(recursion(1234567890, 0), number=1000)) # 1.7200000000008875e-05
+print(timeit.timeit(recursion(123456789023464689432648775834, 0), number=1000)) # 1.6900000000000248e-05
+print(timeit.timeit(recursion(1234567890, 0), number=10000)) # 0.0001648999999999956
+print(timeit.timeit(recursion(123456789023464689432648775834, 0), number=10000)) # 0.00017259999999999498
+print(timeit.timeit(recursion(1234567890, 0), number=100000)) # 0.0016424999999999912
+print(timeit.timeit(recursion(123456789023464689432648775834, 0), number=100000)) # 0.0016892999999999908
+print(timeit.timeit(recursion(1234567890, 0), number=1000000)) # 0.01690989999999999
+print(timeit.timeit(recursion(123456789023464689432648775834, 0), number=1000000)) # 0.016485500000000014
 
-print(timeit.timeit(time_, number=10))
-# num = 1234567890 -- 4.5000000000045e-06
-# num = 123456789023464689432648775834 -- 4.099999999992998e-06
-print(timeit.timeit(time_, number=100))
-# num = 1234567890 -- 2.3999999999996247e-06
-# num = 1234567890234646894326487758345234576484568567956 -- 2.3999999999996247e-06
-print(timeit.timeit(time_, number=1000))
-# num = 1234567890 -- 1.7000000000003124e-05
-# num = 1234567890234646894326487758345234576484568567956 -- 1.7400000000000748e-05
-print(timeit.timeit(time_, number=10000))
-# num = 1234567890 -- 0.00016640000000001098
-# num = 1234567890234646894326487758345234576484568567956 -- 0.0001694000000000001
-print(timeit.timeit(time_, number=100000))
-# num = 1234567890 -- 0.0016422999999999993
-# num = 1234567890234646894326487758345234576484568567956 -- 0.0018279999999999963
-print(timeit.timeit(time_, number=1000000))
-# num = 1234567890 -- 0.016778
-# num = 1234567890234646894326487758345234576484568567956 -- 0.017028499999999988
+cProfile.run('recursion(1234567890, 0)')
+
+   #       14 function calls (4 primitive calls) in 0.000 seconds
+   #
+   # Ordered by: standard name
+   #
+   # ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+   #      1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+   #   11/1    0.000    0.000    0.000    0.000 task_1_ver_1.py:3(recursion)
+   #      1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
+   #      1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+cProfile.run('recursion(123456789023464689432648775834, 0)')
+
+   #       34 function calls (4 primitive calls) in 0.000 seconds
+   #
+   # Ordered by: standard name
+   #
+   # ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+   #      1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+   #   31/1    0.000    0.000    0.000    0.000 task_1_ver_1.py:3(recursion)
+   #      1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
+   #      1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+
+
+
