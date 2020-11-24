@@ -1,26 +1,42 @@
 import timeit, cProfile
 
-time_ = """
-num = str(1234567890) 
-# num = str(123456789023464689432648775834)
+num = str(0)
 num = ''.join(reversed(num))
-"""
 
-print(timeit.timeit(time_, number=10))
-# num = 1234567890 -- 3.490000000000437e-05
-# num = 123456789023464689432648775834 -- 7.890000000000674e-05
-print(timeit.timeit(time_, number=100))
-# num = 1234567890 -- 0.00024199999999999222
-# num = 1234567890234646894326487758345234576484568567956 -- 0.0007069999999999993
-print(timeit.timeit(time_, number=1000))
-# num = 1234567890 -- 0.0023827000000000015
-# num = 1234567890234646894326487758345234576484568567956 -- 0.008780300000000005
-print(timeit.timeit(time_, number=10000))
-# num = 1234567890 -- 0.024645900000000012
-# num = 1234567890234646894326487758345234576484568567956 -- 0.08424859999999998
-print(timeit.timeit(time_, number=100000))
-# num = 1234567890 -- 0.2531098
-# num = 1234567890234646894326487758345234576484568567956 -- 0.6834678999999999
-print(timeit.timeit(time_, number=1000000))
-# num = 1234567890 -- 2.4294969
-# num = 1234567890234646894326487758345234576484568567956 -- 6.592025899999999
+print(timeit.timeit('num = str(1234567890)', number=10)) # 1.2100000000000999e-05
+print(timeit.timeit('num = str(123456789023464689432648775834)', number=10)) # 1.2600000000001499e-05
+print(timeit.timeit('num = str(1234567890)', number=100)) # 7.279999999999787e-05
+print(timeit.timeit('num = str(123456789023464689432648775834)', number=100)) # 0.00010159999999999336
+print(timeit.timeit('num = str(1234567890)', number=1000)) # 0.000650799999999993
+print(timeit.timeit('num = str(123456789023464689432648775834)', number=1000)) # 0.0010035000000000044
+print(timeit.timeit('num = str(1234567890)', number=10000)) # 0.00674799999999999
+print(timeit.timeit('num = str(123456789023464689432648775834)', number=10000)) # 0.010159299999999996
+print(timeit.timeit('num = str(1234567890)', number=100000)) # 0.0673953
+print(timeit.timeit('num = str(123456789023464689432648775834)', number=100000)) # 0.10195050000000003
+print(timeit.timeit('num = str(1234567890)', number=1000000)) # 0.6697242999999999
+print(timeit.timeit('num = str(123456789023464689432648775834)', number=1000000)) # 1.020854
+
+cProfile.run('num = str(1234567890)')
+
+   #       3 function calls in 0.000 seconds
+   #
+   # Ordered by: standard name
+   #
+   # ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+   #      1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+   #      1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
+   #      1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+cProfile.run('num = 123456789023464689432648775834')
+
+   #   3 function calls in 0.000 seconds
+   #
+   # Ordered by: standard name
+   #
+   # ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+   #      1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+   #      1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
+   #      1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+
+
